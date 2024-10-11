@@ -1,8 +1,7 @@
-import { Page } from 'puppeteer';
 
 declare global {
   interface IPuppeteerMain {
-    initBrowser(url: string): Promise<Page>;
+    initBrowser(url: string): Promise<unknown>;
   }
    interface IRequestData {
     url: string;

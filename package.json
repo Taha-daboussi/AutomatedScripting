@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node ./src/Main.ts",
+    "start": "tsc.cmd && node ./src/Main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
