@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/*.js": { "when": "$(basename).ts" },
+        "**/**.js": { "when": "$(basename).tsx" },
+        "**/*.js.map": { "when": "$(basename).ts" },
+        "**/**.js.map": { "when": "$(basename).tsx" },
+
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true
+    },
+    "editor.inlineSuggest.showToolbar": "onHover"
+
+}
