@@ -13,12 +13,16 @@ declare global {
     url: string;
     status: number;
     headers: Record<string, string>;
+    data: string
   }
   interface IRequestsData {
-     [key: string]: Array<IRequestResponseArray>
+    [key: string]: Array<IRequestResponseArray>
   }
   interface IRequestResponseArray {
-    requestData: IRequestData, responseData: IResponseData
+    requestData: IRequestData, 
+    responseData: IResponseData, 
+    requestIndex: number, 
+    requestId: string
   }
 }
 
