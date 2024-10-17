@@ -1,3 +1,5 @@
 **/*.js
 node_modules
 src/Database
+.vscode
+node_modules

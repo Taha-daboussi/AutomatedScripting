@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.7.7",
     "puppeteer": "^23.5.3",
     "tslog": "^4.9.3",
     "uuid": "^10.0.0"
