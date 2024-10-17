@@ -1,10 +1,9 @@
-import { ScrapingHelpers } from "./helpers/ScrapingHelpers";
 import { PuppeteerMain } from "./Puppeteer/PuppeteerMain";
 import { PuppeteerReqInterceptions } from './Puppeteer/PuppeteerReqInterceptions';
 import {LinkedRequestFinder} from './RequestParser/LinkedRequestFinder'
 import { Page , Browser } from "puppeteer";
 import { Logger, ILogObj } from "tslog";
-
+import { Helpers } from "./helpers/Helpers";
 export class Main {
     puppeteerMain  = new PuppeteerMain(this)
     puppeteerReqInterceptions = new PuppeteerReqInterceptions(this);
@@ -27,7 +26,7 @@ export class Main {
         this.page = page;      // Assign the page to this.page
         this.browser = browser;
         const requestResponseArray = await this.puppeteerReqInterceptions.initInterceptionsForAllPages();
-        const finalRequest = ScrapingHelpers.findRequestWithValuesToScrape(requestResponseArray,this.valuesToScrape)[0];
+        const finalRequest = Helpers.ScrapingHelpers.findRequestWithValuesToScrape(requestResponseArray,this.valuesToScrape)[0];
         if(!finalRequest) {
             this.log.error('No request found with values to scrape')
             return;

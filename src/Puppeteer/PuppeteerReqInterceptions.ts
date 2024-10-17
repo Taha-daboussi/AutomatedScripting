@@ -19,8 +19,6 @@ export class PuppeteerReqInterceptions {
     public async initInterceptionsForAllPages(): Promise<Array<IRequestResponseArray>> {
         // eslint-disable-next-line no-async-promise-executor
         return new Promise(async resolve => {
-
-            this.Main.log.info('Launched My PuppeteerReqInterceptions for all browser pages');
             await this.Main.browser.pages().then(async (pages) => {
                 for (const page of pages) {
                     await this.setInterceptionForPage(page); // Set up interception for existing pages

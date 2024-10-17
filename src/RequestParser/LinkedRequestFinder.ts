@@ -1,4 +1,4 @@
-import { Utils } from "src/helpers/Utils";
+import { Helpers } from "src/helpers/Helpers";
 import { Main } from "src/Main";
 const keysToSkip = ['username', 'password', 'email', 'user', 'pass', 'name', 'screen_name', "next_link", "LoginTwoFactorAuthChallenge"]
 
@@ -35,14 +35,14 @@ export class LinkedRequestFinder {
             dynamicDataToLookFor.forEach((key) => {
                 const foundData = this.data.filter(res => JSON.stringify(res.responseData).includes(key))[0];
                 if (foundData && foundData.requestId && (foundData.requestId != initialPair.requestId) && key.length > 3) {
-                    this.Main.log.info("Request ID Request : " + initialPair.requestId + " Response Comes From Request ID  : " + foundData.requestId + " Resposne " + " For Value: " + Utils.shortenKeyIfTooLong(key));
+                    this.Main.log.info("Request ID Request : " + initialPair.requestId + " Response Comes From Request ID  : " + foundData.requestId + " Resposne " + " For Value: " + Helpers.GeneralHelpers.shortenKeyIfTooLong(key));
                     foundResponses.push(foundData);
                 } else {
                     if (key.length > 3) {
-                        if (this.isDynamicValue(key)) {
-                            this.Main.log.info("Dynamic Value " + Utils.shortenKeyIfTooLong(key) + " Might Be Javascript Generated");
+                        if (Helpers.ScrapingHelpers.isDynamicValue(key)) {
+                            this.Main.log.info("Dynamic Value " + Helpers.GeneralHelpers.shortenKeyIfTooLong(key) + " Might Be Javascript Generated");
                         } else {
-                            this.Main.log.warn("No Related Request Found for Request ID " + initialPair.requestId + " and Value: " + Utils.shortenKeyIfTooLong(key));
+                            this.Main.log.warn("No Related Request Found for Request ID " + initialPair.requestId + " and Value: " + Helpers.GeneralHelpers.shortenKeyIfTooLong(key));
                         }
                     }
                 }
@@ -57,23 +57,7 @@ export class LinkedRequestFinder {
         }
     };
 
-    isDynamicValue = (value: string | number) => {
-        const dynamicPattern = /[a-zA-Z0-9;:-]{10,}/; // Example regex for tokens/IDs
-
-        // Check if the value matches the dynamic pattern
-        if (typeof value === 'string' && dynamicPattern.test(value)) {
-            return true;
-        }
-        // Check if the value is in the list of known static values
-        if (keysToSkip.includes(value as string)) {
-            return false;
-        }
-        // If it's numeric, assume it's dynamic (could be a code like "495171")
-        if (!isNaN(value as number)) {
-            return true;
-        }
-        return false;
-    };
+ 
 
     scrapeBasedOnQuotations = (dataObject: Record<string, string>, dynamicDataToScrape: string[] = []) => {
         for (const key in dataObject) {
@@ -101,7 +85,7 @@ export class LinkedRequestFinder {
                 }
                 // Otherwise, it is a primitive (string, number, etc.)
                 else {
-                    if (this.isDynamicValue(value) && !keysToSkip.includes(key.toLowerCase())) {
+                    if (Helpers.ScrapingHelpers.isDynamicValue(value , keysToSkip) && !keysToSkip.includes(key.toLowerCase())) {
                         dynamicDataToScrape.push(value); // Add to local dynamicDataToScrape
                     }
                 }
