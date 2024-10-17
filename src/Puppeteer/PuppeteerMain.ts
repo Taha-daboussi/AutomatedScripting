@@ -1,6 +1,6 @@
 import puppeteer, { Page, Browser } from 'puppeteer';
 import { Main } from '../Main'
-import { Helpers } from 'src/helpers/Helpers';
+import { Helpers } from '../../src/helpers/Helpers';
 export class PuppeteerMain implements IPuppeteerMain {
   Main: Main
   constructor(Main: Main) {

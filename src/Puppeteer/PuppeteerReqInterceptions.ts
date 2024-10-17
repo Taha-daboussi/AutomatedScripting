@@ -56,12 +56,7 @@ export class PuppeteerReqInterceptions {
                 headers: request.headers(),
                 postData: request.postData(),
             };
-
-            // TODO add this as a configuration ?
-            // if (!this.requestsToSkip(url)) {
-       
             this.requestMap.set(url, requestData); // Store request data
-            // }
             request.continue();
         });
 
