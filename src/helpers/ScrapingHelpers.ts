@@ -7,7 +7,10 @@ export class ScrapingHelpers {
      */
     static findRequestWithValuesToScrape = (requestsArray: IRequestResponseArray[], valuesToScrape: string[]) => {
         return requestsArray.filter((request: IRequestResponseArray) => {
-            return valuesToScrape.some((valueToScrape: string) => JSON.stringify(request).includes(valueToScrape))
+            // Ensure all `valuesToScrape` are found in the request object
+            return valuesToScrape.every((valueToScrape: string) => {
+                return JSON.stringify(request).includes(valueToScrape);
+            });
         });
     };
 }
