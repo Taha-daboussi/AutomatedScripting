@@ -9,7 +9,7 @@ export class Main {
     puppeteerMain  = new PuppeteerMain(this)
     puppeteerReqInterceptions = new PuppeteerReqInterceptions(this);
     linkedRequestFinder = new LinkedRequestFinder(this)
-    valuesToScrape = ["ct0","auth_token"]
+    valuesToScrape = ["ct0=","auth_token="]
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     page: Page;
