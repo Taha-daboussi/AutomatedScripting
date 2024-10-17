@@ -1,5 +1,6 @@
 import puppeteer, { Page  , Browser} from 'puppeteer';
 import {Main} from '../Main'
+import { Utils } from '../../src/helpers/Utils';
 export class PuppeteerMain implements IPuppeteerMain {
   Main : Main
   constructor(Main : Main) {
@@ -11,12 +12,19 @@ export class PuppeteerMain implements IPuppeteerMain {
    * @returns - page object of the browser
    */
   async initBrowser(): Promise<{page : Page , browser : Browser}> {
-    this.Main.log.info('initializing browser');
-    const browser = await puppeteer.launch({executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' , headless : false });
+    const browser = await puppeteer.launch(
+      {
+        headless: false, //defaults to true 
+        defaultViewport: null, //Defaults to an 800x600 viewport
+        executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', 
+                       //by default puppeteer runs Chromium buddled with puppeteer 
+        args:['--start-maximized' ,  '--disable-web-security', ]
+      });
     const page = await browser.newPage();
-    await page.goto(this.Main.url);
-    await page.setViewport({width: 1080, height: 1024});
-    if(page) this.Main.log.info('browser initialized');
-    return {page , browser};
+    Utils.sleep(5000).then(()=>{
+    page.goto('https://x.com/i/flow/login');
+  })
+    return {page , browser}
+  
   }
 }
