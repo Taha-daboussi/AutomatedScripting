@@ -24,6 +24,13 @@ declare global {
     requestIndex: number, 
     requestId: string
   }
+
+  interface IMappedRelatedRequests {
+    requestId: string,
+    relatedRequestId: string,
+    key: string
+    requestIndex : number
+}
 }
 
 export { };
