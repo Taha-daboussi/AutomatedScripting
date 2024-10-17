@@ -13,7 +13,7 @@ declare global {
     url: string;
     status: number;
     headers: Record<string, string>;
-    data: string
+    data?: string
   }
   interface IRequestsData {
     [key: string]: Array<IRequestResponseArray>
