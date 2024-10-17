@@ -4,7 +4,8 @@ export class GeneralHelpers {
     }
      shortenKeyIfTooLong(key: string ) : string  {
         if (key.length > 50) {
-            return key.substring(0, 100); // Truncate the key to 100 characters
+            const keyLength = key.length
+            return key.substring(0, keyLength/4) + "..." + key.substring( keyLength - keyLength/4 , keyLength); // Truncate the key to 100 characters
         }
         return key;
     }
