@@ -56,7 +56,7 @@ export class LinkedRequestFinder {
                 } else {
                     if (key.length > 3) {
                         if (Helpers.ScrapingHelpers.isDynamicValue(key)) {
-                            this.Main.log.info("Dynamic Value " + Helpers.GeneralHelpers.shortenKeyIfTooLong(key) + " Might Be Javascript Generated");
+                            this.Main.log.trace("Dynamic Value " + Helpers.GeneralHelpers.shortenKeyIfTooLong(key) + " Might Be Javascript Generated Or User Input");
                         } else {
                             this.Main.log.warn("No Related Request Found for Request ID " + initialPair.requestId + " and Value: " + Helpers.GeneralHelpers.shortenKeyIfTooLong(key));
                         }

@@ -21,7 +21,7 @@ export class PuppeteerMain implements IPuppeteerMain {
         args: ['--start-maximized', '--disable-web-security',]
       });
     const page = await browser.newPage();
-    Helpers.GeneralHelpers.sleep(5000).then(() => {
+    Helpers.GeneralHelpers.sleep(10000).then(() => {
       page.goto('https://x.com/i/flow/login');
     })
     return { page, browser }
