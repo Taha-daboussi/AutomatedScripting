@@ -75,13 +75,6 @@ A powerful tool to automate any website with minimal effort! This script enables
 
 ## How It Works
 
-You can visualize the process with the following examples:
-
-1. **Mapped Related Requests:**
-   ![Mapped Related Requests](https://ibb.co/18kF1Ln)
-
-2. **Request Response Data:**
-   ![Request Response Data](https://ibb.co/6NsHQ29)
 
 1. **Intercept Requests:** The script tracks all network requests made during your interaction.
 2. **Map Values:** Matches the requests that respond with `valuesToScrape`.
@@ -89,6 +82,10 @@ You can visualize the process with the following examples:
 4. **JSON Output:** Generates a comprehensive JSON file to facilitate script generation.
 
 ---
+## How the Data looks
+
+1.![requestResponseData](https://github.com/user-attachments/assets/0e8a28a2-dc25-492b-bc58-b33a4d9a2e42) the data that will be scrape from puppeteer
+![mappedRelatedRequests](https://github.com/user-attachments/assets/44d887bb-fc7a-4def-a68d-99300a977a1e) the final result of mapping related requests
 
 ## Example Prompt for ChatGPT
 
