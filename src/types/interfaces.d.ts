@@ -19,18 +19,29 @@ declare global {
     [key: string]: Array<IRequestResponseArray>
   }
   interface IRequestResponseArray {
-    requestData: IRequestData, 
-    responseData: IResponseData, 
-    requestIndex: number, 
+    requestData: IRequestData,
+    responseData: IResponseData,
+    requestIndex: number,
     requestId: string
   }
 
-  interface IMappedRelatedRequests {
+  interface IConnectedRequestsByPayload {
     requestId: string,
     relatedRequestId: string,
     key: string
-    requestIndex : number
-}
+    requestIndex: number
+  }
+
+  interface IConnectedRequestsByCookies {
+    cookieName: string,
+    cookieValue: string,
+    requestId: number,
+    relatedRequestId: string,
+    requestIndex: number
+    relatedRequestIndex: number
+  }
+
+  interface ICookie {cookieName : string , cookieValue : string}
 }
 
 export { };

@@ -21,7 +21,8 @@ export class Main {
 
     log: Logger<ILogObj> = new Logger();
     url: string = '';
-
+    keysToSkip = ['username', 'password', 'email', 'user', 'pass', 'name', 'screen_name', "next_link", "LoginTwoFactorAuthChallenge"]
+    cookiesToSkipComparing = ["domain","max-age","samesite","secure","httponly","expires","path"]
 
     async run(url : string ) {
         this.url = url
@@ -45,13 +46,13 @@ export class Main {
      * handle interecpted data and process them 
      * @param requestResponseArray interecpted request Data 
      * @param finalRequest final request where the software got the final data to be used 
-     * @returns {IMappedRelatedRequests[]} mapped related requests and data
+     * @returns {IConnectedRequestsByPayload[]} mapped related requests and data
      */
-    handleInterceptedData = (requestResponseArray  : Array<IRequestResponseArray> , finalRequest : IRequestResponseArray ) => {
+    handleInterceptedData = (requestResponseArray  : Array<IRequestResponseArray> , finalRequest : IRequestResponseArray ): IConnectedRequestsByPayload[] => {
         const finalRequestIndex = requestResponseArray.indexOf(finalRequest);
         const splicedRequestArray = requestResponseArray.splice(1,finalRequestIndex);
         const mappedRelatedRequests = this.linkedRequestFinder.run(finalRequest,splicedRequestArray)
-        const flattenedArray = mappedRelatedRequests.flatMap((res : IMappedRelatedRequests) => [res.requestId, res.relatedRequestId]);
+        const flattenedArray = mappedRelatedRequests.flatMap((res : IConnectedRequestsByPayload) => [res.requestId, res.relatedRequestId]);
         const relatedRequests = splicedRequestArray.filter(res=> flattenedArray.includes(res.requestId))
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.puppeteerReqInterceptions.writeDataToFile(relatedRequests as any )
@@ -61,7 +62,7 @@ export class Main {
      * will write the mapped related requests to a file
      * @param mappedRelatedRequests mapped related requests and data
      */
-    writeMappedRelatedRequestsToFile = (mappedRelatedRequests : IMappedRelatedRequests[]) => {
+    writeMappedRelatedRequestsToFile = (mappedRelatedRequests : IConnectedRequestsByPayload[]) => {
         const dirPath = path.join(__dirname, './Database');
         const filePath = path.join(dirPath, 'mappedRelatedRequests.json');
         fs.writeFileSync(filePath,JSON.stringify(mappedRelatedRequests,null,2))
