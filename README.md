@@ -75,6 +75,14 @@ A powerful tool to automate any website with minimal effort! This script enables
 
 ## How It Works
 
+You can visualize the process with the following examples:
+
+1. **Mapped Related Requests:**
+   ![Mapped Related Requests](https://ibb.co/18kF1Ln)
+
+2. **Request Response Data:**
+   ![Request Response Data](https://ibb.co/6NsHQ29)
+
 1. **Intercept Requests:** The script tracks all network requests made during your interaction.
 2. **Map Values:** Matches the requests that respond with `valuesToScrape`.
 3. **Request Linking:** Maps the flow of requests, considering cookies, headers, and other identifiers.
@@ -98,3 +106,7 @@ Contributions are welcome! Here’s how you can help:
 - Implement features such as cookie-based mapping, header-based mapping, or a configuration file.
 
 ---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
