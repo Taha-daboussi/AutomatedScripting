@@ -112,6 +112,11 @@ Contributions are welcome! Here’s how you can help:
 
 ---
 
-## License
+## PS
 
-This project is licensed under the [MIT License](LICENSE).
+I wrote this a couple of months ago during lunch breaks at work, so the code may not always work perfectly. There are many bugs and improvements that can be made.
+
+Feel free to contact me if you need any help:
+
+- **Discord:** Blacken.eth
+- **Twitter:** Blacken_X
